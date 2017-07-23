@@ -373,11 +373,12 @@ void DataDisplay::setupTextFormats()
 
     QTextCursor cursor = m_dataDisplay->textCursor();
     QTextCharFormat format = cursor.charFormat();
-    QColor col = QColor(Qt::black);
+    QColor col = QColor(Qt::white);
     format.setForeground(col);
-    QFont font;
+    QFont font = QFont("Monospace");
+    font.setStyleHint(QFont::Courier);
     font.setFamily(font.defaultFamily());
-    font.setPointSize(10);
+    font.setPointSize(11);
     format.setFont(font);
     m_format_data = new QTextCharFormat(format);
     //    qDebug() << m_format_data->foreground();
@@ -386,17 +387,17 @@ void DataDisplay::setupTextFormats()
     format.setForeground(col);
     m_dataDisplay->setTimeFormat(new QTextCharFormat(format));
 
-    col = QColor(Qt::black);
+    col = QColor(Qt::white);
     format.setForeground(col);
     font = QFont("Monospace");
     font.setStyleHint(QFont::Courier);
-    font.setPointSize(10);
+    font.setPointSize(11);
     //    font.setFixedPitch(true);
     //    font.setKerning(false);
     format.setFont(font);
     m_format_hex = new QTextCharFormat(format);
 
-    col = QColor(100, 100, 100);
+    //col = QColor(100, 100, 100);
     format.setForeground(col);
     m_format_ascii = new QTextCharFormat(format);
 }
@@ -529,7 +530,7 @@ void DataDisplayPrivate::resizeEvent(QResizeEvent *event)
 void DataDisplayPrivate::timeViewPaintEvent(QPaintEvent *event)
 {
     QPainter painter(m_timeView);
-    painter.fillRect(event->rect(), QColor(233, 233, 233));
+    painter.fillRect(event->rect(), QColor(35, 38, 41));
     painter.setPen(m_format_time->foreground().color());
     painter.setFont(m_format_time->font());
     QTextBlock block = firstVisibleBlock();
